@@ -1,34 +1,9 @@
-import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../context/LanguageContext.jsx';
-import { api } from '../../utils/api.js';
-import { mapProducts } from '../../utils/mapProduct.js';
 import './FeaturedBanner.css';
 
-export default function FeaturedBanner() {
+export default function FeaturedBanner({ items = [], loading = false }) {
   const { t } = useLanguage();
-  const [items, setItems] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    let cancelled = false;
-    api
-      .get('/products/featured')
-      .then((list) => {
-        if (cancelled) return;
-        const withPhoto = mapProducts(list).filter((p) => p.imageURL);
-        setItems(withPhoto.slice(0, 3));
-      })
-      .catch(() => {
-        if (!cancelled) setItems([]);
-      })
-      .finally(() => {
-        if (!cancelled) setLoading(false);
-      });
-    return () => {
-      cancelled = true;
-    };
-  }, []);
 
   if (loading || items.length === 0) return null;
 
