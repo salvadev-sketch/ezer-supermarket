@@ -20,7 +20,13 @@ export default function ProductCard({ product }) {
 
   return (
     <div className={`product-card flat-card${isOut ? ' product-card-out' : ''}`}>
-      <div className="product-card-icon" aria-hidden="true">{product.icon}</div>
+      {product.imageURL ? (
+        <div className="product-card-image">
+          <img src={product.imageURL} alt={product.name} loading="lazy" />
+        </div>
+      ) : (
+        <div className="product-card-icon" aria-hidden="true">{product.icon}</div>
+      )}
       <div className="product-card-body">
         <span className="product-card-category text-muted">{t(`categories.${product.category}`)}</span>
         <h3 className="product-card-name">{product.name}</h3>
