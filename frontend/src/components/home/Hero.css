@@ -1,6 +1,12 @@
-.hero { padding: 56px 0 72px; }
+.hero {
+  position: relative;
+  padding: 56px 0 72px;
+  overflow: hidden;
+}
 
 .hero-inner {
+  position: relative;
+  z-index: 2;
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
   gap: 40px;
@@ -55,9 +61,67 @@
 .hero-art-chip-3 { top: -8px; right: 32px; }
 .hero-art-chip-4 { bottom: 8px; right: -16px; }
 
+/* ---------- Hero with background photo ---------- */
+/* Sits directly under the navbar (Hero is the first section on the
+   page), fills the whole hero, and stays put as the section's own
+   background — it never moves or repeats elsewhere on the page. */
+.hero-has-bg {
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+  padding: 72px 0;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: var(--hero-image);
+  background-size: cover;
+  background-position: center;
+}
+
+.hero-bg-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    100deg,
+    rgba(10, 10, 10, 0.92) 0%,
+    rgba(10, 10, 10, 0.78) 32%,
+    rgba(10, 10, 10, 0.35) 62%,
+    rgba(10, 10, 10, 0.15) 100%
+  );
+}
+
+.hero-has-bg .hero-inner { grid-template-columns: 1fr; }
+.hero-has-bg .hero-copy { max-width: 560px; }
+.hero-has-bg .hero-title,
+.hero-has-bg .hero-subtitle { color: #fff; }
+.hero-has-bg .hero-subtitle { opacity: 0.9; }
+.hero-has-bg .btn-secondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+.hero-has-bg .btn-secondary:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
 @media (max-width: 860px) {
   .hero-inner { grid-template-columns: 1fr; }
   .hero-art { height: 260px; order: -1; }
   .hero-art-chip { width: 48px; height: 48px; }
   .hero-art-chip i { font-size: 1.3rem; }
+
+  .hero-has-bg { min-height: 440px; padding: 56px 0; }
+  .hero-has-bg .hero-bg-overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(10, 10, 10, 0.55) 0%,
+      rgba(10, 10, 10, 0.85) 60%,
+      rgba(10, 10, 10, 0.95) 100%
+    );
+  }
 }
