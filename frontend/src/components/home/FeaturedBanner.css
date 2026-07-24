@@ -10,7 +10,8 @@
   position: relative;
   display: block;
   width: 100%;
-  height: 320px;
+  height: 60vh;
+  min-height: 280px;
   border-radius: var(--radius-lg);
   overflow: hidden;
   border: 0.5px solid var(--border);
@@ -24,6 +25,9 @@
 }
 
 .featured-banner-img {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -33,6 +37,7 @@
 .featured-banner-overlay {
   position: absolute;
   inset: auto 0 0 0;
+  z-index: 2;
   padding: 28px 32px;
   background: linear-gradient(to top, rgba(0, 0, 0, 0.72), transparent);
   color: #fff;
@@ -61,7 +66,7 @@
 }
 
 @media (max-width: 860px) {
-  .featured-banner-item { height: 220px; }
+  .featured-banner-item { height: 45vh; min-height: 220px; }
   .featured-banner-name { font-size: 1.15rem; }
   .featured-banner-overlay { padding: 18px 20px; }
 }
