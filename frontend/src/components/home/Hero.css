@@ -29,46 +29,59 @@
 
 .hero-art {
   position: relative;
-  height: 320px;
+  height: 380px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.hero-art-circle {
-  width: 220px;
-  height: 220px;
+.hero-art-blob {
+  width: 320px;
+  height: 320px;
   border-radius: 50%;
   background: var(--bg-accent);
   border: 0.5px solid var(--border-accent);
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+  box-shadow: 0 24px 48px -24px rgba(24, 95, 165, 0.35);
 }
-.hero-art-circle i { font-size: 5rem; color: var(--text-accent); }
+
+.hero-art-photo {
+  width: 84%;
+  height: 84%;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 12px 28px -10px rgba(0, 0, 0, 0.25);
+}
+
+.hero-art-fallback-icon { font-size: 6rem; color: var(--text-accent); }
 
 .hero-art-chip {
   position: absolute;
-  width: 56px;
-  height: 56px;
+  width: 60px;
+  height: 60px;
   border-radius: var(--radius-lg);
   background: var(--surface-2);
   border: 0.5px solid var(--border);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 1px 0 var(--border);
+  box-shadow: 0 8px 20px -8px rgba(0, 0, 0, 0.2);
 }
-.hero-art-chip i { font-size: 1.5rem; color: var(--text-accent); }
+.hero-art-chip i { font-size: 1.6rem; color: var(--text-accent); }
 
-.hero-art-chip-1 { top: 8px; left: 4px; }
-.hero-art-chip-2 { bottom: 24px; left: -8px; }
-.hero-art-chip-3 { top: -4px; right: 24px; }
-.hero-art-chip-4 { bottom: 0; right: -8px; }
+.hero-art-chip-1 { top: 6px; left: -4px; }
+.hero-art-chip-2 { bottom: 40px; left: -20px; }
+.hero-art-chip-3 { top: -8px; right: 32px; }
+.hero-art-chip-4 { bottom: 8px; right: -16px; }
 
 @media (max-width: 860px) {
   .hero-inner { grid-template-columns: 1fr; }
-  .hero-art { height: 220px; order: -1; }
-  .hero-art-circle { width: 160px; height: 160px; }
-  .hero-art-circle i { font-size: 3.5rem; }
+  .hero-art { height: 260px; order: -1; }
+  .hero-art-blob { width: 220px; height: 220px; }
+  .hero-art-fallback-icon { font-size: 4rem; }
+  .hero-art-chip { width: 48px; height: 48px; }
+  .hero-art-chip i { font-size: 1.3rem; }
 }

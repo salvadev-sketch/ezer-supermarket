@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useLanguage } from '../../context/LanguageContext.jsx';
 import { api } from '../../utils/api.js';
 import { mapProducts } from '../../utils/mapProduct.js';
-import ProductCard from '../shop/ProductCard.jsx';
+import FeaturedProductCard from './FeaturedProductCard.jsx';
 import './FeaturedProducts.css';
 
 export default function FeaturedProducts() {
@@ -43,7 +43,7 @@ export default function FeaturedProducts() {
         <div className="featured-grid">
           {loading
             ? Array.from({ length: 4 }).map((_, i) => <div className="product-card-skeleton" key={i} />)
-            : featured.map((product) => <ProductCard product={product} key={product.id} />)}
+            : featured.map((product) => <FeaturedProductCard product={product} key={product.id} />)}
         </div>
       </div>
     </section>

@@ -19,6 +19,7 @@ export const translations = {
       step4: 'Track your order live',
     },
     featured: { title: 'Featured Products', viewAll: 'View All Products' },
+    categoryStrip: { title: 'Shop by Category' },
     footer: {
       tagline: 'Everyday groceries, delivered fast.',
       landmark: 'Near Nyanza car parking',
@@ -105,6 +106,7 @@ export const translations = {
       step4: 'Suivez votre commande en direct',
     },
     featured: { title: 'Produits Vedettes', viewAll: 'Voir Tous les Produits' },
+    categoryStrip: { title: 'Achetez par Catégorie' },
     footer: {
       tagline: 'Courses quotidiennes, livrées rapidement.',
       landmark: 'Près du parking de Nyanza',

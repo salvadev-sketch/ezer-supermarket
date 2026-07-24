@@ -1,9 +1,29 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../context/LanguageContext.jsx';
+import { api } from '../../utils/api.js';
 import './Hero.css';
 
 export default function Hero() {
   const { t } = useLanguage();
+  const [heroImage, setHeroImage] = useState(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    api
+      .get('/products/featured')
+      .then((list) => {
+        if (cancelled) return;
+        const withPhoto = (list || []).find((p) => p.imageURL);
+        if (withPhoto) setHeroImage(withPhoto.imageURL);
+      })
+      .catch(() => {
+        /* fall back to icon art below */
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   return (
     <section className="hero">
@@ -25,8 +45,12 @@ export default function Hero() {
         </div>
 
         <div className="hero-art" aria-hidden="true">
-          <div className="hero-art-circle">
-            <i className="ti ti-basket" />
+          <div className="hero-art-blob">
+            {heroImage ? (
+              <img src={heroImage} alt="" className="hero-art-photo" />
+            ) : (
+              <i className="ti ti-basket hero-art-fallback-icon" />
+            )}
           </div>
           <div className="hero-art-chip hero-art-chip-1"><i className="ti ti-apple" /></div>
           <div className="hero-art-chip hero-art-chip-2"><i className="ti ti-bread" /></div>
