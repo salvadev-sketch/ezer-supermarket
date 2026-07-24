@@ -31,8 +31,9 @@
   position: relative;
   height: 380px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
+  align-self: start;
 }
 
 .hero-art-blob {
