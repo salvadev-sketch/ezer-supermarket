@@ -20,17 +20,32 @@
 }
 
 .category-chip-icon {
-  width: 76px;
-  height: 76px;
+  position: relative;
+  width: 84px;
+  height: 84px;
   border-radius: 50%;
   background: var(--surface-2);
   border: 0.5px solid var(--border);
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: border-color 0.15s ease, transform 0.15s ease;
 }
-.category-chip-icon i { font-size: 1.8rem; color: var(--text-accent); }
+.category-chip-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.category-chip-fallback {
+  display: none;
+  position: absolute;
+  inset: 0;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  color: var(--text-accent);
+}
 
 .category-chip:hover .category-chip-icon,
 .category-chip:focus-visible .category-chip-icon {
