@@ -27,8 +27,9 @@ async function list(req, res) {
 }
 
 // GET /api/products/featured  (public, home page)
+// Auto-pulls the newest products (no manual "featured" flagging required).
 async function featured(req, res) {
-  const products = await Product.find({ featured: true }).limit(8);
+  const products = await Product.find({}).sort({ createdAt: -1 }).limit(8);
   res.json(products);
 }
 
