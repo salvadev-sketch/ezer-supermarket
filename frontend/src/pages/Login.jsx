@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, Navigate, Link } from 'react-router-dom';
+import { sendPasswordResetEmail } from 'firebase/auth';
+import { auth } from '../config/firebase.js';
 import { useAuth } from '../context/AuthContext.jsx';
 import './Login.css';
 
@@ -10,6 +12,7 @@ export default function Login() {
   const [password, setPassword] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [formError, setFormError] = useState('');
+  const [resetSent, setResetSent] = useState(false);
 
   if (!loading && isAuthenticated) {
     return <Navigate to={role === 'admin' ? '/dashboard' : '/rider'} replace />;
@@ -28,6 +31,21 @@ export default function Login() {
     navigate('/dashboard');
   }
 
+  async function handleForgotPassword() {
+    setFormError('');
+    setResetSent(false);
+    if (!email) {
+      setFormError('Enter your email above first, then tap "Forgot password?".');
+      return;
+    }
+    try {
+      await sendPasswordResetEmail(auth, email);
+      setResetSent(true);
+    } catch (err) {
+      setFormError('Could not send reset email — check the address and try again.');
+    }
+  }
+
   return (
     <div className="login-page">
       <div className="login-card">
@@ -38,6 +56,7 @@ export default function Login() {
         <p className="login-subtitle">Staff login — admin &amp; rider accounts only.</p>
 
         {formError && <div className="login-error">{formError}</div>}
+        {resetSent && <div className="login-success">Password reset email sent — check your inbox.</div>}
 
         <form onSubmit={handleSubmit}>
           <div className="login-field">
@@ -62,6 +81,9 @@ export default function Login() {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
+          <button type="button" onClick={handleForgotPassword} className="login-forgot">
+            Forgot password?
+          </button>
           <button type="submit" className="btn btn-primary btn-block login-submit" disabled={submitting}>
             {submitting ? 'Signing in…' : 'Sign in'}
           </button>
