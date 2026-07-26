@@ -1,5 +1,5 @@
-.category-row-section { padding-top: 12px; padding-bottom: 12px; }
-.category-row-section:last-of-type { padding-bottom: 48px; }
+.section.category-row-section { padding-top: 12px; padding-bottom: 12px; }
+.section.category-row-section:last-of-type { padding-bottom: 48px; }
 
 .category-row-header {
   display: flex;

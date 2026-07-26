@@ -1,4 +1,4 @@
-.category-strip-section { padding-top: 8px; padding-bottom: 32px; }
+.section.category-strip-section { padding-top: 8px; padding-bottom: 32px; }
 
 .category-strip {
   display: flex;
