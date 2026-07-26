@@ -89,7 +89,7 @@ input:focus, select:focus, textarea:focus, button:focus-visible, a:focus-visible
 }
 
 /* ---------- Layout helpers ---------- */
-.container { max-width: 1180px; margin: 0 auto; padding: 0 20px; }
+.container { width: 100%; margin: 0 auto; padding: 0 32px; }
 .section { padding: 56px 0; }
 .flat-card {
   background: var(--surface-2);
