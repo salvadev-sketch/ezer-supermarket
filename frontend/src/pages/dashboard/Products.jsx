@@ -53,6 +53,18 @@ export default function Products() {
     }
   }
 
+  async function handleSeedSamples() {
+    if (!window.confirm('Add 5 sample products to each category? Existing products are left untouched.')) return;
+    setError('');
+    try {
+      const result = await api.post('/products/seed-samples', {});
+      await load();
+      window.alert(`Added ${result.inserted} new products (${result.skipped} already existed and were skipped).`);
+    } catch (err) {
+      setError(err.message);
+    }
+  }
+
   return (
     <div>
       <div className="dash-header">
@@ -69,6 +81,9 @@ export default function Products() {
             onChange={(e) => setSearch(e.target.value)}
           />
         </div>
+        <button type="button" className="btn btn-secondary" onClick={handleSeedSamples}>
+          <i className="ti ti-seeding" aria-hidden="true" /> Seed samples
+        </button>
         <button type="button" className="btn btn-primary" onClick={() => setModalProduct(null)}>
           <i className="ti ti-plus" aria-hidden="true" /> Add product
         </button>
